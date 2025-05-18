@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,54 +8,65 @@
   <script src="./index.js" defer></script>
   <link rel="stylesheet" href="styles/styles.min.css">
 </head>
+
 <body>
   <form id="knights">
-  <h2>Créer vos Chevaliers</h2>
+    <h2>Créer vos Chevaliers</h2>
 
-  <div>
-    <h3>Chevalier 1</h3>
-    <input type="text" id="nameInput1" placeholder="Nom" required>
-    <input type="number" id="strength1" placeholder="Force" required>
-    <input type="number" id="magicInput1" placeholder="Magie" required>
+    <div>
+      <h3>Chevalier 1</h3>
+      <input type="text" id="nameInput1" placeholder="Nom" required>
+      <input type="number" id="strength1" placeholder="Force" required>
+      <input type="number" id="magicInput1" placeholder="Magie" required>
+    </div>
+
+    <div>
+      <h3>Chevalier 2</h3>
+      <input type="text" id="nameInput2" placeholder="Nom" required>
+      <input type="number" id="strength2" placeholder="Force" required>
+      <input type="number" id="magicInput2" placeholder="Magie" required>
+    </div>
+
+    <button type="submit">Lancer le Combat</button>
+  </form>
+
+
+
+  <div class="container">
+    <h1>Combat de Chevaliers</h1>
+
+    <div class="chevalier" id="chevalier1">
+      <h2 id="name1"></h2>
+      <div class="barre-vie-container">
+        <div class="barreVie" id="barreVie1"></div>
+      </div>
+      <p>PV : <span id="life1"></span></p>
+      <p>Mana : <span id="mana1"></span></p>
+      <p>Potions : <span id="potions1"></span></p>
+      <button id="attack1">Attaquer</button>
+      <button id="magic1">Sort Magique</button>
+      <button id="potion1">Utiliser Potion</button>
+    </div>
+
+    <div class="chevalier" id="chevalier2">
+      <h2 id="name2"></h2>
+      <div class="barre-vie-container">
+        <div class="barreVie" id="barreVie2"></div>
+      </div>
+      <p>PV : <span id="life2"></span></p>
+      <p>Mana : <span id="mana2"></span></p>
+      <p>Potions : <span id="potions2"></span></p>
+      <button id="attack2">Attaquer</button>
+      <button id="magic2">Sort Magique</button>
+      <button id="potion2">Utiliser Potion</button>
+    </div>
   </div>
 
-  <div>
-    <h3>Chevalier 2</h3>
-    <input type="text" id="nameInput2" placeholder="Nom" required>
-    <input type="number" id="strength2" placeholder="Force" required>
-    <input type="number" id="magicInput2" placeholder="Magie" required>
+
+  <div id="log"></div>
   </div>
 
-  <button type="submit">Lancer le Combat</button>
-</form>
-
-  
-
-<div class="container">
-  <h1>Combat de Chevaliers</h1>
-
-  <div class="chevalier" id="chevalier1">
-    <h2 id="name1"></h2>
-    <p>PV : <span id="life1"></span></p>
-    <p>Mana : <span id="mana1"></span></p>
-    <p>Potions : <span id="potions1"></span></p>
-    <button id="attack1">Attaquer</button>
-    <button id="magic1">Sort Magique</button>
-    <button id="potion1">Utiliser Potion</button>
-  </div>
-
-  <div class="chevalier" id="chevalier2">
-    <h2 id="name2"></h2>
-    <p>PV : <span id="life2"></span></p>
-    <p>Mana : <span id="mana2"></span></p>
-    <p>Potions : <span id="potions2"></span></p>
-    <button id="attack2">Attaquer</button>
-    <button id="magic2">Sort Magique</button>
-    <button id="potion2">Utiliser Potion</button>
-  </div>
-</div>
-
-<div id="log"></div>
 
 </body>
+
 </html>

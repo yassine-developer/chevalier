@@ -14,11 +14,14 @@ class Chevalier {
 
     attack(target) {
         let degats;
-        if (target.strength - this.strength > 0) {
-            degats = Math.round((target.strength - this.strength) / 2);
+        if (this.strength === target.strength) {
+            degats = 10;
+        } else if (this.strength > target.strength) {
+            degats = Math.round((this.strength - target.strength) * 0.8 + 2);
         } else {
-            degats = (this.strength - target.strength);
+            degats = Math.round((target.strength - this.strength) * 0.5 + 1);
         }
+
         target.getDamages(degats);
         return `${this.name} attaque ${target.name} et lui inflige ${degats} points de dégâts.`;
     }
@@ -61,8 +64,9 @@ class Chevalier {
 }
 
 
-document.getElementById('knights').style.display = 'block';
+document.getElementById('knights').style.display = 'grid';
 document.querySelector('.container').style.display = 'none';
+document.querySelector('#log').style.display = 'none';
 
 let chevalier1, chevalier2;
 
@@ -84,7 +88,8 @@ document.getElementById('knights').addEventListener('submit', function (e) {
 
     // Cacher le formulaire et montrer les chevaliers
     document.getElementById('knights').style.display = 'none';
-    document.querySelector('.container').style.display = 'block';
+    document.querySelector('.container').style.display = 'flex';
+    document.querySelector('#log').style.display = 'block';
 
     // Mettre a jour l'interface
     updateInterface();
@@ -99,22 +104,28 @@ function updateInterface() {
     document.getElementById('life1').textContent = Math.round(chevalier1.life);
     document.getElementById('mana1').textContent = chevalier1.mana;
     document.getElementById('potions1').textContent = chevalier1.potions;
+    const pourcentageVie1 = Math.max(0, Math.min(chevalier1.life, 100));
+    document.getElementById('barreVie1').style.width = `${pourcentageVie1}%`;
 
     //mettre a jour l'interface pour le chavalier2
     document.getElementById('name2').textContent = chevalier2.name;
     document.getElementById('life2').textContent = Math.round(chevalier2.life);
     document.getElementById('mana2').textContent = chevalier2.mana;
     document.getElementById('potions2').textContent = chevalier2.potions;
+    const pourcentageVie2 = Math.max(0, Math.min(chevalier2.life, 100));
+    document.getElementById('barreVie2').style.width = `${pourcentageVie2}%`;
 
     // Desactiver les boutons si le chevalier1 est mort
-    document.getElementById('attack1').disabled = chevalier1.isDead();
-    document.getElementById('magic1').disabled = chevalier1.isDead();
-    document.getElementById('potion1').disabled = chevalier1.isDead() || chevalier1.potions === 0 || chevalier1.life === 100;
+    document.getElementById('attack1').disabled = chevalier1.isDead() || chevalier2.isDead();
+    document.getElementById('magic1').disabled = chevalier1.isDead() || chevalier2.isDead();
+    document.getElementById('potion1').disabled = chevalier1.isDead() || chevalier1.potions === 0 || chevalier1.life === 100 || chevalier2.isDead();
 
     // Desactiver les boutons si le chevalier2 est mort
-    document.getElementById('attack2').disabled = chevalier2.isDead();
-    document.getElementById('magic2').disabled = chevalier2.isDead();
-    document.getElementById('potion2').disabled = chevalier2.isDead() || chevalier2.potions === 0 || chevalier2.life === 100;
+    document.getElementById('attack2').disabled = chevalier2.isDead() || chevalier1.isDead();
+    document.getElementById('magic2').disabled = chevalier2.isDead() || chevalier1.isDead();
+    document.getElementById('potion2').disabled = chevalier2.isDead() || chevalier2.potions === 0 || chevalier2.life === 100 || chevalier1.isDead();
+    
+
 }
 
 //les log du combat
